@@ -2,27 +2,52 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using LineBot.Models;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace LineBot.Services
 {
-    class AdamSayings
+    internal static class AdamSayings
     {
-        private List<AdamSaying> listOfSayings;
 
-        public AdamSayings()
+        private static async Task<List<AdamSaying>> GetListOfSayings()
         {
-            GetListOfSayings();
+            var array = JArray.Parse(await File.ReadAllTextAsync(@"AdamSayings.json"));
+            var sayings = array?.ToObject<List<AdamSaying>>() ?? new List<AdamSaying>();
+            return sayings;
         }
 
-        private static void GetListOfSayings()
+        private static void WriteSayingsToFile(List<AdamSaying> sayings)
         {
-            var objects = JObject.Parse(File.ReadAllText(@"AdamSayings.json"));
-            Console.Write(objects);
+            var array = new JArray(
+                sayings.Select(s => new JObject
+                {
+                    {"saying", s.Saying},
+                    {"timestamp", s.Timestamp}
+                })
+            );
+            var objects = new JObject {["sayings"] = array};
+            File.WriteAllTextAsync(@"AdamSayings.json", array.ToString());
+        }
+
+        public static async Task<AdamSaying> GetRandomSaying()
+        {
+            var sayings = await  GetListOfSayings();
+            var size = sayings.Count;
+            var random = new Random();
+            var index = random.Next(size);
+            return sayings[index];
+        }
+
+        public static async void AddSaying(string message)
+        {
+            var sayings = await GetListOfSayings();
+
+            var timestamp = DateTime.Now;
+            var saying = new AdamSaying(message, timestamp);
+            sayings.Add(saying);
+            WriteSayingsToFile(sayings);
         }
     }
 }

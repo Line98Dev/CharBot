@@ -4,7 +4,8 @@
       "commandName": "Project",
       "environmentVariables": {
         "DiscordToken": "ODEzMDgxNDQ5MDg3MzY5MjU2.YDKHGw.IEUjRRu5nRh2GLCFf-Xc8SwsP3E"
-      }
+      },
+      "remoteDebugEnabled": false
     }
   }
 }

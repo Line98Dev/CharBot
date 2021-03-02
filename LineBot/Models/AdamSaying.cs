@@ -8,10 +8,10 @@ namespace LineBot.Models
 {
     class AdamSaying
     {
-        private string Saying { get; }
-        private TimeSpan Timestamp { get; }
+        public string Saying { get; }
+        public DateTime Timestamp { get; }
 
-        public AdamSaying(string saying, TimeSpan timestamp)
+        public AdamSaying(string saying, DateTime timestamp)
         {
             Saying = saying;
             this.Timestamp = timestamp;

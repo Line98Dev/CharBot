@@ -1,0 +1,94 @@
+[
+  {
+    "name": "Admin Console",
+    "url": "https://usersys.bsu.edu/admin"
+  },
+  {
+    "name": "Adobe Admin",
+    "url": "https://adminconsole.adobe.com/"
+  },
+  {
+    "name": "Cisco Finesse",
+    "url": "https://uccx-pub-1.net.bsu.edu:8445/desktop/logout.jsp?locale=en_US"
+  },
+  {
+    "name": "Dell Data Security",
+    "url": "https://ddpe-es.bsu.edu:8443/webui/login"
+  },
+  {
+    "name": "Dell Driver Packs",
+    "url": "https://www.dell.com/support/article/en-us/how13322/dell-family-driver-packs?lang=en#W10"
+  },
+  {
+    "name": "Departments",
+    "url": "https://secweb01.servers.bsu.edu/techcenter/geeklab/departments.html"
+  },
+  {
+    "name": "Directory",
+    "url": "https://bsu.edu/directory"
+  },
+  {
+    "name": "Documentation",
+    "url": "https://ballstate.sharepoint.com/:f:/r/sites/TechnologyHelpDeskGeekLab/Shared%20Documents/Documentation?csf=1&web=1&e=ylg3SE"
+  },
+  {
+    "name": "GeekLab SharePoint",
+    "url": "https://ballstate.sharepoint.com/sites/GeekLab/Shared%20Documents/Forms/AllItems.aspx"
+  },
+  {
+    "name": "HelpDesk Box Folder",
+    "url": "https://ballstate.app.box.com/folder/2618836847"
+  },
+  {
+    "name": "HelpDesk Internal Numbers",
+    "url": "https://ballstate.app.box.com/file/637709347254"
+  },
+  {
+    "name": "HelpDesk Phone List",
+    "url": "https://secweb01.servers.bsu.edu/techcenter/helpdesk/phones.html"
+  },
+  {
+    "name": "KACE",
+    "url": "http://kace.bsu.edu/adminui/computer_inventory.php"
+  },
+  {
+    "name": "Kronos",
+    "url": "http://cms.bsu.edu/about/administrativeoffices/payrolleb/payroll/kronos"
+  },
+  {
+    "name": "Microsoft 365 Admin",
+    "url": "https://admin.microsoft.com/AdminPortal/Home#/users"
+  },
+  {
+    "name": "Outlook Quarantine",
+    "url": "https://protection.office.com/quarantine"
+  },
+  {
+    "name": "Pharos",
+    "url": "http://pharosprodq01.servers.bsu.edu/uniprint/Packages.asp"
+  },
+  {
+    "name": "ServiceNow",
+    "url": "https://bsu.service-now.com/$vtb.do?sysparm_board=1aaac789db7f8050166938fbfc961964"
+  },
+  {
+    "name": "Software Catalog",
+    "url": "https://ballstate.sharepoint.com/sites/TechnologyHelpDeskGeekLab/Lists/Software%20Catalog/AllItems.aspx"
+  },
+  {
+    "name": "Software Center",
+    "url": "https://ballstate.sharepoint.com/sites/UTSSoftwareDistribution"
+  },
+  {
+    "name": "Teams",
+    "url": "https://teams.microsoft.com/"
+  },
+  {
+    "name": "WhenIWork",
+    "url": "https://wheniwork.com/"
+  },
+  {
+    "name": "LAPS",
+    "url": "https://a2.bsu.edu/laps/"
+  }
+]

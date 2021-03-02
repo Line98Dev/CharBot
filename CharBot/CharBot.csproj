@@ -1,10 +1,10 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
-    <StartupObject>LineBot.Program</StartupObject>
-    <PackageIcon>Pixel Hunter Circle.png</PackageIcon>
+    <StartupObject>CharBot.Program</StartupObject>
+    <PackageIcon>char.png</PackageIcon>
     <SignAssembly>false</SignAssembly>
     <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
@@ -17,7 +17,6 @@
     <PackageReference Include="Discord.Net.Webhook" Version="2.3.0" />
     <PackageReference Include="Discord.Net.WebSocket" Version="2.3.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
 
@@ -37,11 +36,23 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="AdamSayings.json">
+    <None Update="fullChar.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="links.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="char.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
-  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties />
+    </VisualStudio>
+  </ProjectExtensions>
 
 </Project>

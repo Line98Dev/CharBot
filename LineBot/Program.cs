@@ -16,7 +16,7 @@ namespace LineBot
 
         // Documentation: https://docs.stillu.cc/guides/introduction/intro.html
         // Discord Token: https://discord.com/developers/applications/
-        // Set Enviroment Variable: LineBot (Properties > Debug)
+        // Set Environment Variable: LineBot (Properties > Debug)
 
 
         // There is no need to implement IDisposable like before as we are
@@ -27,7 +27,6 @@ namespace LineBot
         private static async Task MainAsync()
         {
             Console.Title = "LineBot";
-            var Adam = new AdamSayings();
             // You should dispose a service provider created using ASP.NET
             // when you are finished using it, at the end of your app's lifetime.
             // If you use another dependency injection framework, you should inspect

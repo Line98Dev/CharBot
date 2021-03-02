@@ -13,13 +13,18 @@ namespace LineBot.Modules
 {
     public class PublicModule : ModuleBase<SocketCommandContext>
     {
+        public PublicModule(PictureService pictureService)
+        {
+            PictureService = pictureService;
+        }
+
         // Dependency Injection will fill this value in for us
-        private PictureService PictureService { get; set; }
+        private PictureService PictureService { get; }
 
         [Command("creator")]
         [Alias("website")]
         public Task CreatorAsync()
-            => ReplyAsync("Manage me at https://bot.line98.dev");
+            => ReplyAsync("I was created by https://line98.dev");
 
         [Command("ping")]
         [Alias("pong", "hello")]
@@ -36,6 +41,34 @@ namespace LineBot.Modules
             await Context.Channel.SendFileAsync(stream, "cat.png");
         }
 
+        [Command("adam")]
+        public async Task AdamSayingAsync()
+        {
+            var saying = await AdamSayings.GetRandomSaying();
+            var color = Color.Blue;
+            var timestamp = saying.Timestamp;
+            var author = new EmbedAuthorBuilder()
+                .WithName("Adam's Sayings")
+                .WithIconUrl("https://cdn.discordapp.com/attachments/813082051947134998/813174831150530560/AdamSayings.jpg");
+            var embed = new EmbedBuilder
+            {
+                Title = saying.Saying,
+                Author = author,
+                Color = color,
+                Timestamp = timestamp
+            };
+
+            await ReplyAsync(embed: embed.Build());
+        }
+
+        [Command("AddSaying")]
+        public async Task AddAdamSayingAsync([Remainder]string saying)
+        {
+            AdamSayings.AddSaying(saying);
+            await ReplyAsync("Added \"" + saying + "\"");
+
+        }
+
         [Command("embed")]
         public async Task EmbedMessageAsync()
         {
@@ -43,8 +76,8 @@ namespace LineBot.Modules
             var color = new Color(19, 144, 255);
             var timestamp = DateTime.Now;
             var author = new EmbedAuthorBuilder()
-                .WithName("Adam's sayings")
-                .WithIconUrl("https://cdn.discordapp.com/attachments/813082051947134998/813174831150530560/AdamSayings.jpg");
+                .WithName("LineBot")
+                .WithIconUrl("https://cdn.discordapp.com/attachments/813082051947134998/813172660707000370/Pixel_Hunter_Circle.png");
             var embed = new EmbedBuilder
             {
                 Title = "Test Title",

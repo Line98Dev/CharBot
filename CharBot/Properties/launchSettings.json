@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "CharBot": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DiscordToken": "ODEzMTk1MTMxNzUzODU3MDI0.YDLw-w.DbIRYdMwWLtepFMQa542ajZgxts"
+      }
+    }
+  }
+}
