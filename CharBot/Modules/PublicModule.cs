@@ -158,6 +158,8 @@ namespace CharBot.Modules
                 Author = author,
                 Color = _cardinalRed
             };
+            embed.AddField("adam", "Get a random saying of Adam.");
+            embed.AddField("addSaying", "Add a saying of Adam (Format: addsaying <saying>).");
             embed.AddField("links", "Get the list of work links.");
             embed.AddField("char", "See what I look like.");
             embed.AddField("charHeadShot", "Get that close up on me.");
