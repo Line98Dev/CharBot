@@ -10,13 +10,13 @@ namespace CharBot.Modules
     public class PublicModule : ModuleBase<SocketCommandContext>
     {
         // Dependency Injection will fill this value in for us
-        public PictureService PictureService { get; set; }
+        private PictureService PictureService { get; set; }
         private readonly Color _cardinalRed = new Color(186, 12, 47);
 
         [Command("creator")]
         [Alias("website")]
         public Task CreatorAsync()
-            => ReplyAsync("Manage me at https://bot.line98.dev");
+            => ReplyAsync("I was created by https://line98.dev");
 
         [Command("ping")]
         [Alias("pong", "hello")]
@@ -41,6 +41,34 @@ namespace CharBot.Modules
             // Streams must be seeked to their beginning before being uploaded!
             stream.Seek(0, SeekOrigin.Begin);
             await Context.Channel.SendFileAsync(stream, "dog.png");
+        }
+
+        [Command("adam")]
+        public async Task AdamSayingAsync()
+        {
+            var saying = await AdamSayings.GetRandomSaying();
+            var color = Color.Blue;
+            var timestamp = saying.Timestamp;
+            var author = new EmbedAuthorBuilder()
+                .WithName("Adam's Sayings")
+                .WithIconUrl("https://cdn.discordapp.com/attachments/813082051947134998/813174831150530560/AdamSayings.jpg");
+            var embed = new EmbedBuilder
+            {
+                Title = saying.Saying,
+                Author = author,
+                Color = color,
+                Timestamp = timestamp
+            };
+
+            await ReplyAsync(embed: embed.Build());
+        }
+
+        [Command("AddSaying")]
+        public async Task AddAdamSayingAsync([Remainder] string saying)
+        {
+            AdamSayings.AddSaying(saying);
+            await ReplyAsync("Added \"" + saying + "\"");
+
         }
 
         [Command("char")]

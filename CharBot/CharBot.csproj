@@ -36,6 +36,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="AdamSayings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="fullChar.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
