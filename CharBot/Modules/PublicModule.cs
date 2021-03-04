@@ -10,8 +10,9 @@ namespace CharBot.Modules
     public class PublicModule : ModuleBase<SocketCommandContext>
     {
         // Dependency Injection will fill this value in for us
-        private PictureService PictureService { get; set; }
-        private readonly Color _cardinalRed = new Color(186, 12, 47);
+        // ReSharper disable once MemberCanBePrivate.Global
+        public PictureService PictureService { get; set; }
+        private readonly Color _cardinalRed = new(186, 12, 47);
 
         [Command("creator")]
         [Alias("website")]

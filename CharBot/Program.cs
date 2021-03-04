@@ -35,13 +35,14 @@ namespace CharBot
             {
                 var client = services.GetRequiredService<DiscordSocketClient>();
                 client.Log += LogAsync;
+                services.GetRequiredService<CommandService>().Log += LogAsync;
 
                 // Tokens should be considered secret data and never hard-coded.
                 // We can read from the environment variable to avoid hardcoding.
 
                 await client.LoginAsync(TokenType.Bot, Resources.DiscordToken);
                 await client.StartAsync();
-                await client.SetGameAsync("@CharBot help");
+                await client.SetGameAsync("@CharBot help", "https://line98.dev");
 
                 // Here we initialize the logic required to register our commands.
                 await services.GetRequiredService<CommandHandlingService>().InitializeAsync();
@@ -57,6 +58,8 @@ namespace CharBot
             return Task.CompletedTask;
         }
 
+        // ReSharper disable once MemberCanBeMadeStatic.Local
+        // Do not make static, will break references to library
         private ServiceProvider ConfigureServices()
         {
             return new ServiceCollection()

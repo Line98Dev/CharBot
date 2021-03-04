@@ -10,6 +10,28 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="AdamSayings.json" />
+    <None Remove="char.png" />
+    <None Remove="fullChar.png" />
+    <None Remove="links.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="AdamSayings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="char.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fullChar.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="links.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Discord.Net" Version="2.3.0" />
     <PackageReference Include="Discord.Net.Commands" Version="2.3.0" />
     <PackageReference Include="Discord.Net.Core" Version="2.3.0" />
@@ -36,20 +58,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="AdamSayings.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="fullChar.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="links.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="char.png">
+    <Page Include="char.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Page>
   </ItemGroup>
 
   <ProjectExtensions>
