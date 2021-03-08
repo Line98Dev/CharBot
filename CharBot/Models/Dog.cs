@@ -8,7 +8,6 @@ namespace CharBot.Models
 {
     class Dog
     {
-        public string Message;
-        public string Status;
+        public string Message { get; set; }
     }
 }
