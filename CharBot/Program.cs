@@ -113,6 +113,14 @@ namespace CharBot
                     await message.AddReactionAsync(emote);
                 }
             }
+            if (message.Content.ToLower().Contains("uwu"))
+            {
+
+                if (Emote.TryParse("<:uwu:810943834392887388>", out var emote))
+                {
+                    await message.AddReactionAsync(emote);
+                }
+            }
         }
     }
 }
