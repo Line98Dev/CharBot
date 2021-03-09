@@ -13,6 +13,8 @@ namespace CharBot
 {
     class Program
     {
+        private DiscordSocketClient _client;
+
         // Documentation: https://docs.stillu.cc/guides/introduction/intro.html
         // Discord Token: https://discord.com/developers/applications/
         // Set Environment Variable: CharBot (Properties > Debug)
@@ -33,16 +35,17 @@ namespace CharBot
             // its documentation for the best way to do this.
             using (var services = ConfigureServices())
             {
-                var client = services.GetRequiredService<DiscordSocketClient>();
-                client.Log += LogAsync;
+                _client = services.GetRequiredService<DiscordSocketClient>();
+                _client.Log += LogAsync;
+                _client.MessageReceived += MessageReceivedAsync;
                 services.GetRequiredService<CommandService>().Log += LogAsync;
 
                 // Tokens should be considered secret data and never hard-coded.
                 // We can read from the environment variable to avoid hardcoding.
 
-                await client.LoginAsync(TokenType.Bot, Resources.DiscordToken);
-                await client.StartAsync();
-                await client.SetGameAsync("@CharBot help", "https://line98.dev");
+                await _client.LoginAsync(TokenType.Bot, Resources.DiscordToken);
+                await _client.StartAsync();
+                await _client.SetGameAsync("@CharBot help", "https://line98.dev");
 
                 // Here we initialize the logic required to register our commands.
                 await services.GetRequiredService<CommandHandlingService>().InitializeAsync();
@@ -69,6 +72,31 @@ namespace CharBot
                 .AddSingleton<HttpClient>()
                 .AddSingleton<PictureService>()
                 .BuildServiceProvider();
+        }
+
+        private async Task MessageReceivedAsync(SocketMessage message)
+        {
+            if (message == null) return; 
+            // The bot should never respond to itself.
+            if (message.Author.Id == _client.CurrentUser.Id)
+                return;
+
+            if (message.Content.ToLower().Contains("adam"))
+            {
+
+                if (Emote.TryParse("<:AdamScream:813175595608965150>", out var emote))
+                {
+                    await message.AddReactionAsync(emote);
+                }
+            }
+            if (message.Content.ToLower().Contains( "?"))
+            {
+
+                if (Emote.TryParse("<:Wot:813863839677415434>", out var emote))
+                {
+                    await message.AddReactionAsync(emote);
+                }
+            }
         }
     }
 }

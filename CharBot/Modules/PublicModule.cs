@@ -16,16 +16,17 @@ namespace CharBot.Modules
 
         [Command("creator")]
         [Alias("website")]
-        public Task CreatorAsync()
+        [Summary("See who made me! (hint: it's Hunter).")]
+        public Task CreatorAsync([Remainder] String text)
             => ReplyAsync("I was created by https://line98.dev");
 
         [Command("ping")]
         [Alias("pong", "hello")]
-        public Task PingAsync()
+        public Task PingAsync([Remainder] String text)
             => ReplyAsync("pong!");
 
         [Command("cat")]
-        public async Task CatAsync()
+        public async Task CatAsync([Remainder] String text)
         {
             // Get a stream containing an image of a cat
             var stream = await PictureService.GetCatPictureAsync();
@@ -35,7 +36,7 @@ namespace CharBot.Modules
         }
 
         [Command("dog")]
-        public async Task DogAsync()
+        public async Task DogAsync([Remainder] String text)
         {
             // Get a stream containing an image of a cat
             var stream = await PictureService.GetDogPictureAsync();
@@ -45,7 +46,7 @@ namespace CharBot.Modules
         }
 
         [Command("char")]
-        public async Task CharAsync()
+        public async Task CharAsync([Remainder] String text)
         {
             var stream = File.OpenRead(@"fullChar.png");
             stream.Seek(0, SeekOrigin.Begin);
@@ -53,7 +54,7 @@ namespace CharBot.Modules
         }
 
         [Command("charHeadShot")]
-        public async Task CharHeadShotAsync()
+        public async Task CharHeadShotAsync([Remainder] String text)
         {
             var stream = File.OpenRead(@"char.png");
             stream.Seek(0, SeekOrigin.Begin);
@@ -61,7 +62,7 @@ namespace CharBot.Modules
         }
 
         [Command("embed")]
-        public async Task EmbedMessageAsync()
+        public async Task EmbedMessageAsync([Remainder] String text)
         {
 
             var color = new Color(19, 144, 255);
@@ -82,7 +83,7 @@ namespace CharBot.Modules
         }
 
         [Command("links")]
-        public async Task ListLinks()
+        public async Task ListLinks([Remainder] String text)
         {
             var embed = new EmbedBuilder
             {
@@ -95,7 +96,7 @@ namespace CharBot.Modules
         }
 
         [Command("AddLink")]
-        public async Task AddLinkAsync(string name, string url)
+        public async Task AddLinkAsync(string name, string url, [Remainder] String text)
         {
             WorkLinks.AddLink(name, url);
             await ReplyAsync("Added " + name + " to go to " + url + ".");
@@ -118,7 +119,7 @@ namespace CharBot.Modules
 
         [Command("help")]
         [RequireContext(ContextType.Guild)]
-        public async Task ListCommands()
+        public async Task ListCommands([Remainder] String text)
         {
             var author = new EmbedAuthorBuilder()
                 .WithName("CharBot")
@@ -141,7 +142,6 @@ namespace CharBot.Modules
             embed.AddField("dog", "Get a random cat picture from dog.ceo/dog-api/.");
             embed.AddField("echo", "I'll repeat whatever you say.");
             embed.AddField("help", "Display this block again.");
-
 
             await ReplyAsync(embed: embed.Build());
         }
