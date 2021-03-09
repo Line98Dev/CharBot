@@ -114,7 +114,7 @@ namespace CharBot
                     await message.AddReactionAsync(emote);
                 }
             }
-            if (message.Content.ToLower().Contains("disappointed"))
+            if (message.Content.ToLower().Contains("disappoint"))
             {
 
                 if (Emote.TryParse("<:DammitAdam:813863745734049832>", out var emote))
