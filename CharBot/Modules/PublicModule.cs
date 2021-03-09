@@ -44,34 +44,6 @@ namespace CharBot.Modules
             await Context.Channel.SendFileAsync(stream, "dog.png");
         }
 
-        [Command("adam")]
-        public async Task AdamSayingAsync()
-        {
-            var saying = await AdamSayings.GetRandomSaying();
-            var color = Color.Blue;
-            var timestamp = saying.Timestamp;
-            var author = new EmbedAuthorBuilder()
-                .WithName("Adam's Sayings")
-                .WithIconUrl("https://cdn.discordapp.com/attachments/813082051947134998/813174831150530560/AdamSayings.jpg");
-            var embed = new EmbedBuilder
-            {
-                Title = saying.Saying,
-                Author = author,
-                Color = color,
-                Timestamp = timestamp
-            };
-
-            await ReplyAsync(embed: embed.Build());
-        }
-
-        [Command("AddSaying")]
-        public async Task AddAdamSayingAsync([Remainder] string saying)
-        {
-            AdamSayings.AddSaying(saying);
-            await ReplyAsync("Added \"" + saying + "\"");
-
-        }
-
         [Command("char")]
         public async Task CharAsync()
         {
