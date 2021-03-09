@@ -97,6 +97,22 @@ namespace CharBot
                     await message.AddReactionAsync(emote);
                 }
             }
+            if (message.Content.ToLower().Contains("chelsea"))
+            {
+
+                if (Emote.TryParse("<:Chelsea:674617329962975243>", out var emote))
+                {
+                    await message.AddReactionAsync(emote);
+                }
+            }
+            if (message.Content.ToLower().Contains("disappointed"))
+            {
+
+                if (Emote.TryParse("<:DammitAdam:813863745734049832>", out var emote))
+                {
+                    await message.AddReactionAsync(emote);
+                }
+            }
         }
     }
 }
