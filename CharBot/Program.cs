@@ -82,11 +82,11 @@ namespace CharBot
                 return;
 
             // Emote reaction for sender
-            if (message.Author.Id == 762447714814132226)
-            {
-                var emoji = new Emoji("\uD83D\uDCA9");
-                await message.AddReactionAsync(emoji);
-            }
+            // if (message.Author.Id == 762447714814132226)
+            // {
+            //     var emoji = new Emoji("\uD83D\uDCA9");
+            //     await message.AddReactionAsync(emoji);
+            // }
 
 
             // Emote reaction for message contents
