@@ -17,16 +17,16 @@ namespace CharBot.Modules
         [Command("creator")]
         [Alias("website")]
         [Summary("See who made me! (hint: it's Hunter).")]
-        public Task CreatorAsync([Remainder] String text)
+        public Task CreatorAsync([Remainder] string text = null)
             => ReplyAsync("I was created by https://line98.dev");
 
         [Command("ping")]
         [Alias("pong", "hello")]
-        public Task PingAsync([Remainder] String text)
+        public Task PingAsync([Remainder] string text = null)
             => ReplyAsync("pong!");
 
         [Command("cat")]
-        public async Task CatAsync([Remainder] String text)
+        public async Task CatAsync([Remainder] string text = null)
         {
             // Get a stream containing an image of a cat
             var stream = await PictureService.GetCatPictureAsync();
@@ -36,7 +36,7 @@ namespace CharBot.Modules
         }
 
         [Command("dog")]
-        public async Task DogAsync([Remainder] String text)
+        public async Task DogAsync([Remainder] string text = null)
         {
             // Get a stream containing an image of a cat
             var stream = await PictureService.GetDogPictureAsync();
@@ -46,7 +46,7 @@ namespace CharBot.Modules
         }
 
         [Command("char")]
-        public async Task CharAsync([Remainder] String text)
+        public async Task CharAsync([Remainder] string text = null)
         {
             var stream = File.OpenRead(@"fullChar.png");
             stream.Seek(0, SeekOrigin.Begin);
@@ -54,7 +54,7 @@ namespace CharBot.Modules
         }
 
         [Command("charHeadShot")]
-        public async Task CharHeadShotAsync([Remainder] String text)
+        public async Task CharHeadShotAsync([Remainder] string text = null)
         {
             var stream = File.OpenRead(@"char.png");
             stream.Seek(0, SeekOrigin.Begin);
@@ -62,8 +62,9 @@ namespace CharBot.Modules
         }
 
         [Command("embed")]
-        public async Task EmbedMessageAsync([Remainder] String text)
+        public async Task EmbedMessageAsync([Remainder] string text = null)
         {
+            if (text == null) throw new ArgumentNullException(nameof(text));
 
             var color = new Color(19, 144, 255);
             var timestamp = DateTime.Now;
@@ -83,7 +84,7 @@ namespace CharBot.Modules
         }
 
         [Command("links")]
-        public async Task ListLinks([Remainder] String text)
+        public async Task ListLinks([Remainder] string text = null)
         {
             var embed = new EmbedBuilder
             {
@@ -96,7 +97,7 @@ namespace CharBot.Modules
         }
 
         [Command("AddLink")]
-        public async Task AddLinkAsync(string name, string url, [Remainder] String text)
+        public async Task AddLinkAsync(string name, string url, [Remainder] string text = null)
         {
             WorkLinks.AddLink(name, url);
             await ReplyAsync("Added " + name + " to go to " + url + ".");
@@ -113,13 +114,13 @@ namespace CharBot.Modules
 
         // [Remainder] takes the rest of the command's arguments as one argument, rather than splitting every space
         [Command("echo")]
-        public Task EchoAsync([Remainder] string text)
+        public Task EchoAsync([Remainder] string text = null)
             // Insert a ZWSP before the text to prevent triggering other bots!
             => ReplyAsync('\u200B' + text);
 
         [Command("help")]
         [RequireContext(ContextType.Guild)]
-        public async Task ListCommands([Remainder] String text)
+        public async Task ListCommands([Remainder] string text = null)
         {
             var author = new EmbedAuthorBuilder()
                 .WithName("CharBot")
