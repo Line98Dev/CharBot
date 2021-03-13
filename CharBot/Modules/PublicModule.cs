@@ -61,6 +61,14 @@ namespace CharBot.Modules
             await Context.Channel.SendFileAsync(stream, "char.png");
         }
 
+        [Command("tyler")]
+        public async Task TylerShotAsync([Remainder] string text = null)
+        {
+            var stream = File.OpenRead(@"Tyler.png");
+            stream.Seek(0, SeekOrigin.Begin);
+            await Context.Channel.SendFileAsync(stream, "Tyler.png");
+        }
+
         [Command("embed")]
         public async Task EmbedMessageAsync([Remainder] string text = null)
         {
@@ -136,6 +144,7 @@ namespace CharBot.Modules
             embed.AddField("links", "Get the list of work links.");
             embed.AddField("char", "See what I look like.");
             embed.AddField("charHeadShot", "Get that close up on me.");
+            embed.AddField("tyler", "See what everyone's favorite streamer looks like.");
             embed.AddField("addLink", "Add a link to the list (Format: addlink \"name\"  \"url\").");
             embed.AddField("creator | website", "See who made me! (hint: it's Hunter).");
             embed.AddField("ping | pong | hello", "Make sure I'm alive.");
