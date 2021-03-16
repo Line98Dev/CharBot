@@ -10,7 +10,7 @@ namespace CharBot.Models
     {
         public static TimeSpan CommencementCountDown()
         {
-            var graduation = new DateTime(2021, 05, 08, 20, 0, 0);
+            var graduation = new DateTime(2021, 05, 08, 21, 0, 0);
             var now = DateTime.Now;
             var difference = graduation - now;
             return difference;
