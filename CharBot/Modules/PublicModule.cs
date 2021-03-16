@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
+using CharBot.Models;
 using CharBot.Services;
 using Discord;
 using Discord.Commands;
@@ -20,6 +21,29 @@ namespace CharBot.Modules
         public Task CreatorAsync([Remainder] string text = null)
             => ReplyAsync("I was created by https://line98.dev");
 
+        [Command("graduate")]
+        [Alias("gtfo")]
+        [Summary("See who made me! (hint: it's Hunter).")]
+        public async Task GraduationAsync([Remainder] string text = null)
+        {
+            var author = new EmbedAuthorBuilder()
+                .WithName("CharBot")
+                .WithIconUrl(
+                    "https://cdn.discordapp.com/emojis/768902970036584508.png?v=1");
+            var embed = new EmbedBuilder
+            {
+                Title = "Graduation 2021",
+                Description = " The College of Science and Humanities commencement ceremony on May 8th at 8pm",
+                Author = author,
+                Color = _cardinalRed
+            };
+            var timespan = Countdown.CommencementCountDown();
+            embed.AddField(timespan.Days.ToString(), "days");
+            embed.AddField(timespan.Hours.ToString(), "hours");
+
+            await ReplyAsync(embed: embed.Build());
+        }
+
         [Command("ping")]
         [Alias("pong", "hello")]
         public Task PingAsync([Remainder] string text = null)
@@ -34,6 +58,7 @@ namespace CharBot.Modules
             stream.Seek(0, SeekOrigin.Begin);
             await Context.Channel.SendFileAsync(stream, "cat.png");
         }
+
 
         [Command("dog")]
         public async Task DogAsync([Remainder] string text = null)
@@ -141,6 +166,7 @@ namespace CharBot.Modules
                 Author = author,
                 Color = _cardinalRed
             };
+            embed.AddField("graduate | gtfo", "Get the countdown to commencement.");
             embed.AddField("links", "Get the list of work links.");
             embed.AddField("char", "See what I look like.");
             embed.AddField("charHeadShot", "Get that close up on me.");
@@ -148,7 +174,7 @@ namespace CharBot.Modules
             embed.AddField("addLink", "Add a link to the list (Format: addlink \"name\"  \"url\").");
             embed.AddField("creator | website", "See who made me! (hint: it's Hunter).");
             embed.AddField("ping | pong | hello", "Make sure I'm alive.");
-            embed.AddField("cat", "Get a random cat picture from cataas.com.");
+            embed.AddField("cat", "Get a random cat picture from thecatapi.com.");
             embed.AddField("dog", "Get a random cat picture from dog.ceo/dog-api/.");
             embed.AddField("echo", "I'll repeat whatever you say.");
             embed.AddField("help", "Display this block again.");
