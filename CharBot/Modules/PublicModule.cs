@@ -152,6 +152,7 @@ namespace CharBot.Modules
             => ReplyAsync('\u200B' + text);
 
         [Command("help")]
+        [Alias("commands")]
         [RequireContext(ContextType.Guild)]
         public async Task ListCommands([Remainder] string text = null)
         {
