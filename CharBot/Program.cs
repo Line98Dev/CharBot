@@ -43,7 +43,7 @@ namespace CharBot
                 // Tokens should be considered secret data and never hard-coded.
                 // We can read from the environment variable to avoid hardcoding.
 
-                await _client.LoginAsync(TokenType.Bot, Resources.DiscordToken);
+                await _client.LoginAsync(TokenType.Bot, Environment.GetEnvironmentVariable("DiscordToken"));
                 await _client.StartAsync();
                 await _client.SetGameAsync("@CharBot help", "https://line98.dev");
 

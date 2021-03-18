@@ -59,14 +59,5 @@ namespace CharBot.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ODEzMTk1MTMxNzUzODU3MDI0.YDLw-w.DbIRYdMwWLtepFMQa542ajZgxts.
-        /// </summary>
-        internal static string DiscordToken {
-            get {
-                return ResourceManager.GetString("DiscordToken", resourceCulture);
-            }
-        }
     }
 }
