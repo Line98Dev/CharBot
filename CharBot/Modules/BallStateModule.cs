@@ -28,13 +28,15 @@ namespace CharBot.Modules
             var embed = new EmbedBuilder
             {
                 Title = "Graduation 2021",
-                Description = " The College of Science and Humanities commencement ceremony on May 8th at 8pm",
                 Author = author,
                 Color = _cardinalRed
             };
             var timespan = Countdown.CommencementCountDown();
-            embed.AddField(timespan.Days.ToString(), "days");
-            embed.AddField(timespan.Hours.ToString(), "hours");
+            foreach (var school in timespan)
+            {
+                embed.AddField(school.Key, school.Value);
+            } 
+            embed.WithCurrentTimestamp();
 
             await ReplyAsync(embed: embed.Build());
         }
