@@ -43,7 +43,7 @@ namespace CharBot.Models
 
         private static string StringBuilder(string school, TimeSpan countdown)
         {
-            return "There are **" + countdown.Days + "** days and **" + countdown.Hours + "** hours until the commencement ceremony begins!";
+            return "There are **" + countdown.Days + "** days and **" + countdown.Hours + "** hours **" + countdown.Minutes + "** minutes until the commencement ceremony begins!";
         }
 
 
