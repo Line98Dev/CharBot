@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
-using CharBot.Models;
 using CharBot.Services;
 using Discord;
 using Discord.Commands;
@@ -21,8 +20,6 @@ namespace CharBot.Modules
         public Task CreatorAsync([Remainder] string text = null)
             => ReplyAsync("I was created by https://line98.dev");
 
-        
-
         [Command("ping")]
         [Alias("pong", "hello")]
         public Task PingAsync([Remainder] string text = null)
@@ -38,7 +35,6 @@ namespace CharBot.Modules
             await Context.Channel.SendFileAsync(stream, "cat.png");
         }
 
-
         [Command("dog")]
         public async Task DogAsync([Remainder] string text = null)
         {
@@ -48,24 +44,6 @@ namespace CharBot.Modules
             stream.Seek(0, SeekOrigin.Begin);
             await Context.Channel.SendFileAsync(stream, "dog.png");
         }
-
-        [Command("char")]
-        public async Task CharAsync([Remainder] string text = null)
-        {
-            var stream = File.OpenRead(@"fullChar.png");
-            stream.Seek(0, SeekOrigin.Begin);
-            await Context.Channel.SendFileAsync(stream, "fullChar.png");
-        }
-
-        [Command("charHeadShot")]
-        public async Task CharHeadShotAsync([Remainder] string text = null)
-        {
-            var stream = File.OpenRead(@"char.png");
-            stream.Seek(0, SeekOrigin.Begin);
-            await Context.Channel.SendFileAsync(stream, "char.png");
-        }
-
-       
 
         [Command("embed")]
         public async Task EmbedMessageAsync([Remainder] string text = null)
@@ -120,7 +98,6 @@ namespace CharBot.Modules
                 Author = author,
                 Color = _cardinalRed
             };
-            embed.AddField("graduate | gtfo", "Get the countdown to commencement.");
             embed.AddField("links", "Get the list of work links.");
             embed.AddField("char", "See what I look like.");
             embed.AddField("charHeadShot", "Get that close up on me.");

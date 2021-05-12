@@ -41,7 +41,6 @@ namespace CharBot.Services
         {
             var links = await GetLinks();
 
-            var timestamp = DateTime.Now;
             var link = new Link(name, url);
             links.Add(link);
             WriteLinksToFile(links);

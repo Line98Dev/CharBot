@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
+﻿using System.IO;
 using System.Threading.Tasks;
-using CharBot.Models;
 using CharBot.Services;
 using Discord;
 using Discord.Commands;
@@ -15,30 +10,20 @@ namespace CharBot.Modules
     {
         private readonly Color _cardinalRed = new(186, 12, 47);
 
-
-        [Command("graduate")]
-        [Alias("gtfo")]
-        [Summary("See who made me! (hint: it's Hunter).")]
-        public async Task GraduationAsync([Remainder] string text = null)
+        [Command("char")]
+        public async Task CharAsync([Remainder] string text = null)
         {
-            var author = new EmbedAuthorBuilder()
-                .WithName("CharBot")
-                .WithIconUrl(
-                    "https://cdn.discordapp.com/emojis/768902970036584508.png?v=1");
-            var embed = new EmbedBuilder
-            {
-                Title = "Graduation 2021",
-                Author = author,
-                Color = _cardinalRed
-            };
-            var timespan = Countdown.CommencementCountDown();
-            foreach (var school in timespan)
-            {
-                embed.AddField(school.Key, school.Value);
-            } 
-            embed.WithCurrentTimestamp();
+            var stream = File.OpenRead(@"fullChar.png");
+            stream.Seek(0, SeekOrigin.Begin);
+            await Context.Channel.SendFileAsync(stream, "fullChar.png");
+        }
 
-            await ReplyAsync(embed: embed.Build());
+        [Command("charHeadShot")]
+        public async Task CharHeadShotAsync([Remainder] string text = null)
+        {
+            var stream = File.OpenRead(@"char.png");
+            stream.Seek(0, SeekOrigin.Begin);
+            await Context.Channel.SendFileAsync(stream, "char.png");
         }
 
         [Command("tyler")]

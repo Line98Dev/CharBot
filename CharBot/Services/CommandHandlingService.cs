@@ -36,15 +36,14 @@ namespace CharBot.Services
         private async Task MessageReceivedAsync(SocketMessage rawMessage)
         {
             // Ignore system messages, or messages from other bots
-            if (!(rawMessage is SocketUserMessage message)) return;
-            if (message.Source != MessageSource.User) return;
+            if (rawMessage is not SocketUserMessage { Source: MessageSource.User } message) return;
 
             // This value holds the offset where the prefix ends
             var argPos = 0;
             // Perform prefix check. You may want to replace this with
             // (!message.HasCharPrefix('!', ref argPos))
             // for a more traditional command format like !help.
-            if (!message.HasCharPrefix('!', ref argPos) && !message.HasMentionPrefix(_discord.CurrentUser, ref argPos)) return;
+            if (!message.HasCharPrefix('/', ref argPos) && !message.HasMentionPrefix(_discord.CurrentUser, ref argPos)) return;
 
             var context = new SocketCommandContext(_discord, message);
             // Perform the execution of the command. In this method,
