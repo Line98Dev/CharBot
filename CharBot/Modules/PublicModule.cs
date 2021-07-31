@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using CharBot.Services;
@@ -43,6 +44,13 @@ namespace CharBot.Modules
             // Streams must be seeked to their beginning before being uploaded!
             stream.Seek(0, SeekOrigin.Begin);
             await Context.Channel.SendFileAsync(stream, "dog.png");
+        }
+
+        [Command("uptime")]
+        public async Task UptimeAsync([Remainder] string text = null)
+        {
+            TimeSpan time = DateTime.UtcNow - Process.GetCurrentProcess().StartTime.ToUniversalTime();
+            await ReplyAsync("I've been awake for " + time.ToString(@"dd\:hh\:mm\:ss") + "!");
         }
 
         [Command("embed")]
@@ -109,6 +117,7 @@ namespace CharBot.Modules
             embed.AddField("dog", "Get a random cat picture from dog.ceo/dog-api/.");
             embed.AddField("echo", "I'll repeat whatever you say.");
             embed.AddField("help", "Display this block again.");
+            embed.AddField("uptime", "See how long CharBot has been going.");
 
             await ReplyAsync(embed: embed.Build());
         }
